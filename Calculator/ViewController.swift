@@ -55,6 +55,28 @@ class ViewController: UIViewController {
         }
     }
     
+    @IBAction func setVariable() {
+        userIsInMiddleOfTypingANumber = false
+        brain.variableValues["M"] = displayValue!
+        if let result = brain.evaluate() {
+            displayValue = result
+        } else {
+            displayValue = nil
+        }
+    }
+    
+    @IBAction func getVariable() {
+        if userIsInMiddleOfTypingANumber {
+            enter()
+        }
+        
+        if let result = brain.pushOperand("M") {
+            displayValue = result
+        } else {
+            displayValue = nil
+        }
+    }
+    
     @IBAction func operate(sender: UIButton) {
         if userIsInMiddleOfTypingANumber {
             enter()
@@ -99,7 +121,7 @@ class ViewController: UIViewController {
             return history.text!
         }
         set {
-            if newValue == "C" {
+            if newValue == "" {
                 history.text = ""
             } else {
                 history.text = newValue + " ="

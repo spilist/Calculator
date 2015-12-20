@@ -62,13 +62,17 @@ class CalculatorBrain {
     
     var description: String {
         get {
-            var val = describe(opStack)
-            var resultString = val.result!
-            while(!val.remainingOps.isEmpty) {
-                val = describe(val.remainingOps)
-                resultString = val.result! + ", " + resultString
+            if opStack.isEmpty {
+                return ""
+            } else {
+                var val = describe(opStack)
+                var resultString = val.result!
+                while(!val.remainingOps.isEmpty) {
+                    val = describe(val.remainingOps)
+                    resultString = val.result! + ", " + resultString
+                }
+                return resultString
             }
-            return resultString
         }
     }
     
