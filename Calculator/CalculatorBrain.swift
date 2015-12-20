@@ -127,6 +127,7 @@ class CalculatorBrain {
                 }
             case .ClearOperation:
                 opStack.removeAll()
+                variableValues = [:]
                 return (0, [])
             case .SelfOperation(_, let value):
                 return (value, remainingOps)
