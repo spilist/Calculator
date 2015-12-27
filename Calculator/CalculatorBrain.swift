@@ -35,6 +35,21 @@ class CalculatorBrain {
                 }
             }
         }
+        
+        var precedence: Int {
+            get {
+                switch self {
+                case .BinaryOperation(let symbol, _):
+                    if symbol == "✕" || symbol == "÷" {
+                        return 1
+                    } else {
+                        return Int.max
+                    }
+                default:
+                    return Int.max
+                }
+            }
+        }
     }
     
     private var opStack = [Op]()
@@ -148,6 +163,11 @@ class CalculatorBrain {
 
         }
         return (nil, ops)
+    }
+    
+    func undo() -> Double? {
+        opStack.removeLast()
+        return evaluate()
     }
     
     func evaluate() -> Double? {

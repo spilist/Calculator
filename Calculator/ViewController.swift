@@ -41,6 +41,13 @@ class ViewController: UIViewController {
                     display.text = "0"
                     userIsInMiddleOfTypingANumber = false
                 }
+            } else {
+                if let result = brain.undo() {
+                    displayValue = result
+                    historyValue = brain.description
+                } else {
+                    displayValue = nil
+                }
             }
         } else if op == "+/-" {
             if userIsInMiddleOfTypingANumber {
