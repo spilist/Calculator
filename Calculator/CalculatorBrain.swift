@@ -75,6 +75,27 @@ class CalculatorBrain {
         learnOp(Op.ClearOperation)
     }
     
+    var program: AnyObject {
+        get {
+            return opStack.map{ $0.description }
+        }
+        set {
+            if let opSymbols = newValue as? [String] {
+                var newOpStack = [Op]()
+                for opSymbol in opSymbols {
+                    if let op = knownOps[opSymbol] {
+                        newOpStack.append(op)
+                    } else if let operand = Double(opSymbol) {
+                        newOpStack.append(.Operand(operand))
+                    } else {
+                        newOpStack.append(.Variable(opSymbol))
+                    }
+                }
+                opStack = newOpStack
+            }
+        }
+    }
+    
     var description: String {
         get {
             if opStack.isEmpty {
@@ -87,6 +108,16 @@ class CalculatorBrain {
                     resultString = val.result! + ", " + resultString
                 }
                 return resultString
+            }
+        }
+    }
+    
+    var programDescription: String {
+        get {
+            if opStack.isEmpty {
+                return ""
+            } else {
+                return describe(opStack).result!
             }
         }
     }
@@ -171,8 +202,8 @@ class CalculatorBrain {
     }
     
     func evaluate() -> Double? {
-        let (result, remainder) = evaluate(opStack)
-        print("\(description) = \(result) with \(remainder) left over")
+        let (result, _) = evaluate(opStack)
+//        print("\(description) = \(result) with \(remainder) left over")
         return result
     } 
     

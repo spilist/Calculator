@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class CalculatorViewController: UIViewController {
     @IBOutlet weak var display: UILabel!
     @IBOutlet weak var history: UILabel!
     
@@ -110,7 +110,7 @@ class ViewController: UIViewController {
     
     var displayValue: Double? {
         get {
-            return NSNumberFormatter().numberFromString(display.text!)!.doubleValue
+            return Double(display.text!)
         }
         set {
             if newValue == nil {
@@ -134,5 +134,23 @@ class ViewController: UIViewController {
                 history.text = newValue + " ="
             }
         }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        var destination = segue.destinationViewController as? UIViewController
+        if let navCon = destination as? UINavigationController {
+            destination = navCon.visibleViewController
+        }
+        if let gvc = destination as? GraphViewController {
+            if let identifier = segue.identifier {
+                switch identifier {
+                case "graph":
+                    gvc.programDescription = brain.programDescription
+                    gvc.program = brain.program
+                default: break
+                }
+            }
+        }
+
     }
 }
