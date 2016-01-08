@@ -137,9 +137,9 @@ class CalculatorViewController: UIViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        var destination = segue.destinationViewController as? UIViewController
+        var destination = segue.destinationViewController as UIViewController
         if let navCon = destination as? UINavigationController {
-            destination = navCon.visibleViewController
+            destination = navCon.visibleViewController!
         }
         if let gvc = destination as? GraphViewController {
             if let identifier = segue.identifier {

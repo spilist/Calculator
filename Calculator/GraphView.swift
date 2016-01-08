@@ -16,18 +16,40 @@ protocol GraphViewDataSource: class {
 class GraphView: UIView {    
     @IBInspectable
     var color: UIColor = UIColor.blueColor() { didSet { setNeedsDisplay() } }
+    
+    private let defaults = NSUserDefaults.standardUserDefaults()
+
     @IBInspectable
-    var scale: CGFloat = 1.0 { didSet { setNeedsDisplay() } }
+    var scale: CGFloat {
+        get {
+            return defaults.objectForKey(Constants.ScaleKey) as? CGFloat ?? 1.0
+        }
+        set {
+            defaults.setObject(newValue, forKey: Constants.ScaleKey)
+            setNeedsDisplay()
+        }
+    }
+
+    private var originTranslation: CGPoint {
+        get {
+            return CGPointFromString(defaults.objectForKey(Constants.OriginKey) as? String ?? "(0, 0)")
+        }
+        set {
+            defaults.setObject(NSStringFromCGPoint(newValue), forKey: Constants.OriginKey)
+        }
+    }
+    
+    private struct Constants {
+        static let ScaleKey = "GraphView.Scale"
+        static let OriginKey = "GraphView.Origin"
+    }
     
     private var graphCenter: CGPoint {
         return convertPoint(center, fromView: superview)
     }
     
-    private var originTranslation: (x: CGFloat, y: CGFloat) = (0, 0)
-
     func scale(gesture: UIPinchGestureRecognizer) {
         switch gesture.state {
-        case .Ended: fallthrough
         case .Changed:
             scale *= gesture.scale
             gesture.scale = 1
@@ -37,7 +59,6 @@ class GraphView: UIView {
     
     func moveWholeGraph(gesture: UIPanGestureRecognizer) {
         switch gesture.state {
-        case .Ended: fallthrough
         case .Changed:
             let translation = gesture.translationInView(self)
             center.x += translation.x
@@ -49,8 +70,7 @@ class GraphView: UIView {
     
     func moveOrigin(gesture: UITapGestureRecognizer) {
         let tapLocation = gesture.locationInView(self)
-        originTranslation.x = tapLocation.x - graphCenter.x
-        originTranslation.y = tapLocation.y - graphCenter.y
+        originTranslation = CGPointMake(tapLocation.x - graphCenter.x, tapLocation.y - graphCenter.y)
         setNeedsDisplay()
     }
     
