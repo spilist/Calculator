@@ -8,14 +8,18 @@
 
 import UIKit
 
-class GraphViewController: UIViewController, GraphViewDataSource {
+class GraphViewController: UIViewController, GraphViewDataSource, UIPopoverPresentationControllerDelegate {
     var program: AnyObject? {
         didSet {
+            minMaxY = (0, 0)
             updateUI()
         }
     }
     
     var programDescription: String = ""
+    
+    var minMaxY: (min: Double, max: Double) = (0, 0)
+    var yTranslation: Double = 0.0
     
     func updateUI() {
         graphView?.setNeedsDisplay()
@@ -51,10 +55,37 @@ class GraphViewController: UIViewController, GraphViewDataSource {
             if let result = brain.evaluate() {
                 if result.isNormal || result.isZero {
                     points.append((x: Double(x)/scale, y: result))
+                    if result < minMaxY.min {
+                        minMaxY.min = result
+                    }
+                    if result > minMaxY.max {
+                        minMaxY.max = result
+                    }
                 }
             }
         }
 
         return points
+    }
+    
+    private var minMaxSegueIdentifier: String = "Show Min Max Y"
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let identifier = segue.identifier {
+            switch identifier {
+            case minMaxSegueIdentifier:
+                if let tvc = segue.destinationViewController as? TextViewController {
+                    if let ppc = tvc.popoverPresentationController {
+                        ppc.delegate = self
+                    }
+                    tvc.text = "\(minMaxY)"
+                }
+            default: break
+            }
+        }
+    }
+    
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.None
     }
 }

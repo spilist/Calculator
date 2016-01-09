@@ -568,7 +568,15 @@
                             <constraint firstItem="clO-Zp-ETg" firstAttribute="bottom" secondItem="bcL-p3-8Zt" secondAttribute="top" id="eec-GQ-n7t"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Graph" id="80O-1t-hua"/>
+                    <navigationItem key="navigationItem" title="Graph" id="80O-1t-hua">
+                        <barButtonItem key="rightBarButtonItem" title="MinMaxY" id="sgL-RZ-ljo">
+                            <connections>
+                                <segue destination="Fdh-Aj-iKL" kind="popoverPresentation" identifier="Show Min Max Y" popoverAnchorBarButtonItem="sgL-RZ-ljo" id="2fa-OE-OIZ">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="graphView" destination="clO-Zp-ETg" id="II4-Yl-g9w"/>
                     </connections>
@@ -576,6 +584,42 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UJa-np-Yw3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="974" y="1658"/>
+        </scene>
+        <!--Text View Controller-->
+        <scene sceneID="RHf-k8-0iI">
+            <objects>
+                <viewController id="Fdh-Aj-iKL" customClass="TextViewController" customModule="Calculator" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6Au-ML-3aI"/>
+                        <viewControllerLayoutGuide type="bottom" id="dlm-5o-GpN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="UGI-Rg-LXj">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="vqk-7L-SxK">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="vqk-7L-SxK" secondAttribute="trailing" id="EYZ-bW-rLA"/>
+                            <constraint firstItem="vqk-7L-SxK" firstAttribute="top" secondItem="UGI-Rg-LXj" secondAttribute="top" id="NEI-cr-0sZ"/>
+                            <constraint firstItem="vqk-7L-SxK" firstAttribute="bottom" secondItem="dlm-5o-GpN" secondAttribute="top" id="rfX-n5-I4a"/>
+                            <constraint firstItem="vqk-7L-SxK" firstAttribute="leading" secondItem="UGI-Rg-LXj" secondAttribute="leading" id="uUQ-qI-8fX"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="textView" destination="vqk-7L-SxK" id="cKQ-Qe-GoC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6fQ-uv-DCc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1742" y="1658"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="YT0-Ae-bdC">

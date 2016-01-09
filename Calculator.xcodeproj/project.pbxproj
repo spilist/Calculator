@@ -16,6 +16,7 @@
 		3642751E1C328F6D00332BFF /* AxesDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3642751D1C328F6D00332BFF /* AxesDrawer.swift */; };
 		364275201C3388D200332BFF /* GraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3642751F1C3388D200332BFF /* GraphViewController.swift */; };
 		364275221C338F1200332BFF /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364275211C338F1200332BFF /* GraphView.swift */; };
+		3642F0E31C3FB28C005DF7E1 /* TextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3642F0E21C3FB28C005DF7E1 /* TextViewController.swift */; };
 		3690B5AA1C1681EE006F7848 /* CalculatorBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3690B5A91C1681EE006F7848 /* CalculatorBrain.swift */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +44,7 @@
 		3642751D1C328F6D00332BFF /* AxesDrawer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AxesDrawer.swift; sourceTree = "<group>"; };
 		3642751F1C3388D200332BFF /* GraphViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphViewController.swift; sourceTree = "<group>"; };
 		364275211C338F1200332BFF /* GraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
+		3642F0E21C3FB28C005DF7E1 /* TextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewController.swift; sourceTree = "<group>"; };
 		3690B5A91C1681EE006F7848 /* CalculatorBrain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculatorBrain.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -88,6 +90,7 @@
 				3690B5A91C1681EE006F7848 /* CalculatorBrain.swift */,
 				363787D01C10A14E00F5BDCA /* CalculatorViewController.swift */,
 				363787D21C10A14E00F5BDCA /* Main.storyboard */,
+				3642F0E21C3FB28C005DF7E1 /* TextViewController.swift */,
 				3642751F1C3388D200332BFF /* GraphViewController.swift */,
 				364275211C338F1200332BFF /* GraphView.swift */,
 				3642751D1C328F6D00332BFF /* AxesDrawer.swift */,
@@ -231,6 +234,7 @@
 				3642751E1C328F6D00332BFF /* AxesDrawer.swift in Sources */,
 				363787D11C10A14E00F5BDCA /* CalculatorViewController.swift in Sources */,
 				363787CF1C10A14E00F5BDCA /* AppDelegate.swift in Sources */,
+				3642F0E31C3FB28C005DF7E1 /* TextViewController.swift in Sources */,
 				364275221C338F1200332BFF /* GraphView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
